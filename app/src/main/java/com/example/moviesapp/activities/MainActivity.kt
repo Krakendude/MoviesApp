@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.adapters.MovieAdapter
 import com.example.moviesapp.data.Movie
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         searchMovies("a")
 
@@ -78,11 +79,11 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val service = movieService.getInstance()
-                val response = service.findByTitle(title = query)
+                val response = service.searchMovies(search = query)
 
                 if (response.isSuccessful) {
-                    response.body()?.let { movie ->
-                        moviesList = listOf(movie)
+                    response.body()?.Search?.let { results ->
+                        moviesList = results
 
                         withContext(Dispatchers.Main) {
                             adapter.updateItems(moviesList)

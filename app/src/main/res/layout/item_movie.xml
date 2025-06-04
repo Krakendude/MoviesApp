@@ -18,6 +18,11 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
@@ -30,6 +35,19 @@
             android:background="#C0818181"
             android:textColor="@color/white"/>
 
+            <TextView
+                android:id="@+id/yearTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                tools:text="Movie name"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                android:background="#C0818181"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

@@ -23,6 +23,12 @@ interface movieService {
         @Query("i") imdbId: String
     ): Response<Movie>
 
+    @GET(".")
+    suspend fun searchMovies(
+        @Query("apikey") apiKey: String = "a9dfac08",
+        @Query("s") search: String
+    ): Response<MovieSearchResponse>
+
     companion object {
         fun getInstance(): movieService {
             val retrofit = Retrofit.Builder()
